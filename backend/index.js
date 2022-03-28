@@ -7,8 +7,10 @@ const express = require("express");
 app.prepare().then(() => {
     const app = express();
     
+    require("./utils/mongodb");
     require("./utils/middleware")(app);
     require("./utils/routes")(app);
+
     app.get("*", async (req, res) => {
         return await handle(req, res);
     });
